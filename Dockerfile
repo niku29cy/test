@@ -1,5 +1,10 @@
 #
 FROM centos:7
-MAINTAINER Masaaki Endo
-COPY . .
-RUN /bin/sh
+RUN yum update -y
+RUN yum install -y httpd
+
+COPY ./html/* /var/www/html/.
+EXPOSE 80
+
+CMD /usr/sbin/httpd -DFOREGROUND
+
